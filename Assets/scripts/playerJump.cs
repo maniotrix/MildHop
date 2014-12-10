@@ -1,15 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-<<<<<<< HEAD:Assets/scripts/playerJump.cs
-<<<<<<< HEAD:Assets/scripts/player_jump.cs
-public class player_jump: MonoBehaviour
-=======
 public class playerJump : MonoBehaviour
->>>>>>> be5f82bcc1c4a311813e64d209a1eadfc1980fbb:Assets/scripts/playerJump.cs
-=======
-public class playerJump : MonoBehaviour
->>>>>>> be5f82bcc1c4a311813e64d209a1eadfc1980fbb:Assets/scripts/playerJump.cs
 {
     public enum STATE_OF_OBJECT                         // State of Player
     {
@@ -20,10 +12,10 @@ public class playerJump : MonoBehaviour
 
     public Transform object0;                           // Used to get distance
     public Transform object1;                           // Used to get distance
-    public Transform refPointPlayer;                    // reference object
-    float distance;                                     //  Distance between lines
+	public Transform ref_p;                             // reference object
 	public Transform mainCam;                           // Main Camera
-	public static Transform cam;                
+    float distance;                                     //  Distance between lines
+	public static Transform startCam;                
 	public static float Yposition=0.0f;
 	public static float Xposition=0.0f;
 	public static float Zposition=0.0f;
@@ -41,13 +33,13 @@ public class playerJump : MonoBehaviour
 	{
         direction = STATE_OF_OBJECT.AT_START;
         distance = 0.0f;
-        cam = mainCam;
+        startCam = mainCam;
 		player_along_z.speed = 0.0f;
 		Yposition = transform.position.y;
 		Xposition = transform.position.x;
 		Zposition = transform.position.z;
 		distance = Vector3.Distance (object0.position, object1.position);
-		Cam_position = cam.position;
+		Cam_position = startCam.position;
 		player_position = new Vector3 (Xposition, Yposition, Zposition);
 	}
 
@@ -85,25 +77,11 @@ public class playerJump : MonoBehaviour
 				}
 			}
 		}
-<<<<<<< HEAD:Assets/scripts/playerJump.cs
-<<<<<<< HEAD:Assets/scripts/player_jump.cs
-		if (Input.GetKeyDown(KeyCode.Space) ){
-        
-			moveForward();
-		}
-		if (direction != STATE_OF_OBJECT.AT_START) 
-		{
-			cam.Translate(0.01f,0,0);
-			//print (direction);
-=======
-=======
->>>>>>> be5f82bcc1c4a311813e64d209a1eadfc1980fbb:Assets/scripts/playerJump.cs
 
         // Space is Pressed ( Computer)
 		if (Input.GetKeyDown(KeyCode.Space) )
         {
             moveForward();
->>>>>>> be5f82bcc1c4a311813e64d209a1eadfc1980fbb:Assets/scripts/playerJump.cs
 		}
 
         if (direction == STATE_OF_OBJECT.LEFT) 
@@ -116,61 +94,22 @@ public class playerJump : MonoBehaviour
 			transform.Translate (0,0, Move_along_z2.speed);
 		}
 
-<<<<<<< HEAD:Assets/scripts/playerJump.cs
-<<<<<<< HEAD:Assets/scripts/player_jump.cs
-       
+        // Move Camera when player starts
+        if (direction != STATE_OF_OBJECT.AT_START)
+        {
+            startCam.Translate(0.01f, 0, 0);
+        }
+
+        //  Game over
         if (Mathf.Abs(transform.position.z) > ref_p.position.z || Vector3
                         .Distance(transform.position, new Vector3(Xposition, Yposition, Zposition)) > 14 * distance) 
         {
-            direction = STATE_OF_OBJECT.AT_START;
-			transform.position = new Vector3(Xposition,Yposition,Zposition);
-			cam.position=Cam_position;
-=======
-        // Move Camera when player starts
-        if (direction != STATE_OF_OBJECT.AT_START)
-        {
-            cam.Translate(0.01f, 0, 0);
-        }
-
-        //  Game over
-        if (Mathf.Abs(transform.position.z) > refPointPlayer.position.z) 
-        {
             gameOver();
->>>>>>> be5f82bcc1c4a311813e64d209a1eadfc1980fbb:Assets/scripts/playerJump.cs
-=======
-        // Move Camera when player starts
-        if (direction != STATE_OF_OBJECT.AT_START)
-        {
-            cam.Translate(0.01f, 0, 0);
-        }
-
-        //  Game over
-        if (Mathf.Abs(transform.position.z) > refPointPlayer.position.z) 
-        {
-            gameOver();
->>>>>>> be5f82bcc1c4a311813e64d209a1eadfc1980fbb:Assets/scripts/playerJump.cs
 		}
-
-        // Level Over
-        if (Vector3.Distance(transform.position, new Vector3(Xposition, Yposition, Zposition)) > 14 * distance)
-        {
-            gameOver();             // Only option at this time
-        }
-
 
 	}
 
-    // Method  called if Collision Occurs b/w player and any other cube
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.name == "Cube")
-        {
-            gameOver();
-        }
-    }
-
-    //  Move Forward
-    private void moveForward()          
+    private void moveForward()          //  Move Forward
     {
         transform.position = new Vector3(transform.position.x + distance,
                                            transform.position.y,
@@ -181,18 +120,13 @@ public class playerJump : MonoBehaviour
 
         else
             direction = (direction == STATE_OF_OBJECT.LEFT) ? STATE_OF_OBJECT.RIGHT : STATE_OF_OBJECT.LEFT;
-
-<<<<<<< HEAD:Assets/scripts/playerJump.cs
     }
 
-=======
->>>>>>> be5f82bcc1c4a311813e64d209a1eadfc1980fbb:Assets/scripts/playerJump.cs
-    // Game Over
-    public void gameOver()             
+    private void gameOver()             // Game Over
     {
         direction = STATE_OF_OBJECT.AT_START;
         transform.position = new Vector3(Xposition, Yposition, Zposition);
-        cam.position = Cam_position;
+        startCam.position = Cam_position;
     }
 }
 
