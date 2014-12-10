@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class demo : MonoBehaviour {
-
+public class demo : MonoBehaviour 
+{
 	public static float Yspeed=0.04f;
 	public static float Yposition=0.0f;
 	public static float Xposition=0.0f;

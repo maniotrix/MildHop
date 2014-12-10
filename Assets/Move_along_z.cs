@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Move_along_z : MonoBehaviour 
 {
-	public Transform ref_g;
+    public Transform refPointGrid;
 	public static float speed=0.03f;
 
 	// Use this for initialization
@@ -15,7 +15,7 @@ public class Move_along_z : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
-		if (Mathf.Abs(transform.position.z) >= ref_g.position.z) 
+		if (Mathf.Abs(transform.position.z) >= refPointGrid.position.z) 
         {
 		    speed=-speed;		
 		}
