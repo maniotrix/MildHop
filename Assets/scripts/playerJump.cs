@@ -1,8 +1,12 @@
 using UnityEngine;
 using System.Collections;
 
+<<<<<<< HEAD:Assets/scripts/playerJump.cs
 <<<<<<< HEAD:Assets/scripts/player_jump.cs
 public class player_jump: MonoBehaviour
+=======
+public class playerJump : MonoBehaviour
+>>>>>>> be5f82bcc1c4a311813e64d209a1eadfc1980fbb:Assets/scripts/playerJump.cs
 =======
 public class playerJump : MonoBehaviour
 >>>>>>> be5f82bcc1c4a311813e64d209a1eadfc1980fbb:Assets/scripts/playerJump.cs
@@ -81,6 +85,7 @@ public class playerJump : MonoBehaviour
 				}
 			}
 		}
+<<<<<<< HEAD:Assets/scripts/playerJump.cs
 <<<<<<< HEAD:Assets/scripts/player_jump.cs
 		if (Input.GetKeyDown(KeyCode.Space) ){
         
@@ -91,6 +96,8 @@ public class playerJump : MonoBehaviour
 			cam.Translate(0.01f,0,0);
 			//print (direction);
 =======
+=======
+>>>>>>> be5f82bcc1c4a311813e64d209a1eadfc1980fbb:Assets/scripts/playerJump.cs
 
         // Space is Pressed ( Computer)
 		if (Input.GetKeyDown(KeyCode.Space) )
@@ -109,6 +116,7 @@ public class playerJump : MonoBehaviour
 			transform.Translate (0,0, Move_along_z2.speed);
 		}
 
+<<<<<<< HEAD:Assets/scripts/playerJump.cs
 <<<<<<< HEAD:Assets/scripts/player_jump.cs
        
         if (Mathf.Abs(transform.position.z) > ref_p.position.z || Vector3
@@ -117,6 +125,18 @@ public class playerJump : MonoBehaviour
             direction = STATE_OF_OBJECT.AT_START;
 			transform.position = new Vector3(Xposition,Yposition,Zposition);
 			cam.position=Cam_position;
+=======
+        // Move Camera when player starts
+        if (direction != STATE_OF_OBJECT.AT_START)
+        {
+            cam.Translate(0.01f, 0, 0);
+        }
+
+        //  Game over
+        if (Mathf.Abs(transform.position.z) > refPointPlayer.position.z) 
+        {
+            gameOver();
+>>>>>>> be5f82bcc1c4a311813e64d209a1eadfc1980fbb:Assets/scripts/playerJump.cs
 =======
         // Move Camera when player starts
         if (direction != STATE_OF_OBJECT.AT_START)
@@ -162,8 +182,11 @@ public class playerJump : MonoBehaviour
         else
             direction = (direction == STATE_OF_OBJECT.LEFT) ? STATE_OF_OBJECT.RIGHT : STATE_OF_OBJECT.LEFT;
 
+<<<<<<< HEAD:Assets/scripts/playerJump.cs
     }
 
+=======
+>>>>>>> be5f82bcc1c4a311813e64d209a1eadfc1980fbb:Assets/scripts/playerJump.cs
     // Game Over
     public void gameOver()             
     {
