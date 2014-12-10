@@ -6,9 +6,9 @@ Made by: [maniotrix](https://github.com/maniotrix)
 
 * Clone the repository, using
 
-    ```
-    $ git clone https://github.com/maniotrix/MildHop.git
-    ```
+```
+$ git clone https://github.com/maniotrix/MildHop.git
+```
 
 * Then open MildHop using "Unity3D"
 
@@ -16,15 +16,15 @@ Made by: [maniotrix](https://github.com/maniotrix)
 
 ## Usage
 
-Download demo release from [here](https://www.dropbox.com/sh/m4wgh562rv37hh7/AAAPxytoqkgi2UQD_YjEdnmOa?dl=0).
+Download demo release for all platforms from [here](https://www.dropbox.com/sh/m4wgh562rv37hh7/AAAPxytoqkgi2UQD_YjEdnmOa?dl=0).
 
 Linux users:
 
-    ```
-    $ cd *path/to/demofilename*
-    $ chmod 777 *demofilename*
-    $ ./*demofilename*
-    ```
+```
+$ cd *path/to/demofilename*
+$ chmod 777 *demofilename*
+$ ./*demofilename*
+```
 
 Windows users:
 
