@@ -3,7 +3,14 @@ using System.Collections;
 
 public class player_jump : MonoBehaviour
 {
-	public Transform object0;
+    public enum STATE_OF_OBJECT
+    {
+        AT_START,
+        LEFT,
+        RIGHT
+    } ;
+
+    public Transform object0;
 	public Transform object1;
 	public Transform ref_p;
 	public Transform main_cam;
@@ -11,9 +18,8 @@ public class player_jump : MonoBehaviour
 	public static float Yposition=0.0f;
 	public static float Xposition=0.0f;
 	public static float Zposition=0.0f;
-	float distance =0;
-	public static bool direction=true;
-	public static bool start=false;
+    float distance;                                     //  Distance between ______
+    public static STATE_OF_OBJECT direction;            //  State of object
 	public static Vector3 Cam_position;
 	Vector3 player_position ;
 	private Vector2 fp;  // first finger position
@@ -22,7 +28,10 @@ public class player_jump : MonoBehaviour
 
 	// Use this for initialization
 	void Start ()
-	{	cam = main_cam;
+	{
+        direction = STATE_OF_OBJECT.AT_START;
+        distance = 0.0f;
+        cam = main_cam;
 		player_along_z.speed = 0.0f;
 		Yposition = transform.position.y;
 		Xposition = transform.position.x;
@@ -34,7 +43,7 @@ public class player_jump : MonoBehaviour
 
 	// Update is called once per frame
 	void Update ()
-	{	//print("y= "+transform.position.y);
+	{	
 		foreach (Touch touch in Input.touches)
 		{
 			if (touch.phase == TouchPhase.Began)
@@ -57,13 +66,14 @@ public class player_jump : MonoBehaviour
 				}
 				else if((fp.x - lp.x) < -80) // right swipe
 				{
-					transform.position=new Vector3(transform.position.x+distance,
-					                               transform.position.y,
-					                               transform.position.z);
+                    moveForward();
+                    //transform.position=new Vector3(transform.position.x+distance,
+                    //                               transform.position.y,
+                    //                               transform.position.z);
 					
 					
-					direction=!direction;
-					start=true;
+                    //direction=!direction;
+                    //start=true;
 				}
 				else if((fp.y - lp.y) < -80 ) // up swipe
 				{
@@ -71,43 +81,49 @@ public class player_jump : MonoBehaviour
 				}
 			}
 		}
-		if (Input.GetKeyDown(KeyCode.Space) ){
-			transform.position=new Vector3(transform.position.x+distance,
-			                               transform.position.y,
-			                               transform.position.z);
-
-
-			direction=!direction;
-			start=true;
+		if (Input.GetKeyDown(KeyCode.Space) )
+        {
+            moveForward();
 		}
-		if (start == false) {
-			transform.Translate (0, 0, player_along_z.speed);
-
-		}
-		if(direction==false && start==true){
+        if (direction == STATE_OF_OBJECT.LEFT) 
+        {
 			transform.Translate (0,0, Move_along_z.speed);
-			print (direction);
-		}
-		
-		if(direction==true && start==true){
-			transform.Translate (0,0, Move_along_z2.speed);
-			print (direction);
+			//print (direction);
 		}
 
-		if(Vector3.Distance(transform.position , new Vector3 (Xposition, Yposition, Zposition) ) > 5*distance){
+        if (direction == STATE_OF_OBJECT.RIGHT) 
+        {
+			transform.Translate (0,0, Move_along_z2.speed);
+			//print (direction);
+		}
+
+        if (Vector3.Distance(transform.position, new Vector3(Xposition, Yposition, Zposition)) > 5 * distance) 
+        {
 			player_position = transform.position;
 			//cam.position=new Vector3((Cam_position.x+3*distance),Cam_position.y,Cam_position.z);
 			cam.Translate(0.01f,0,0);
 		}
-		if (Mathf.Abs (transform.position.z) > ref_p.position.z || Vector3
-		     			.Distance(transform.position , new Vector3 (Xposition, Yposition, Zposition) ) > 14*distance ) {
-			player_jump.start=false;
-			player_jump.direction=true;
-			transform.position = new Vector3(Xposition,Yposition,Zposition);
+        if (Mathf.Abs(transform.position.z) > ref_p.position.z || Vector3
+                        .Distance(transform.position, new Vector3(Xposition, Yposition, Zposition)) > 14 * distance) 
+        {
+            direction = STATE_OF_OBJECT.AT_START;
 			cam.position=Cam_position;
 		}
 
 	}
+
+    private void moveForward()
+    {
+        transform.position = new Vector3(transform.position.x + distance,
+                                           transform.position.y,
+                                           transform.position.z); 
+
+        if (direction == STATE_OF_OBJECT.AT_START)
+            direction = STATE_OF_OBJECT.LEFT;
+
+        else
+            direction = (direction == STATE_OF_OBJECT.LEFT) ? STATE_OF_OBJECT.RIGHT : STATE_OF_OBJECT.LEFT;
+    }
 
 
 }

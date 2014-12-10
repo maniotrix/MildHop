@@ -20,8 +20,7 @@ public class Collision : MonoBehaviour {
 			//player_jump.Yspeed=0.0f;
 			//transform.position=new Vector3(player_jump.Xposition,player_jump.Yposition,transform.position.z);
 			demo.Yspeed=0;
-			player_jump.start=false;
-			player_jump.direction=true;
+            player_jump.direction = player_jump.STATE_OF_OBJECT.AT_START;
 			transform.position = new Vector3(Xposition,Yposition,Zposition);
 			player_jump.cam.position=player_jump.Cam_position;
 			print("fefd");
