@@ -12,10 +12,10 @@ public class playerJump : MonoBehaviour
 
     public Transform object0;                           // Used to get distance
     public Transform object1;                           // Used to get distance
-	public Transform ref_p;                             // reference object
-	public Transform mainCam;                           // Main Camera
+    public Transform refPointPlayer;                    // reference object
     float distance;                                     //  Distance between lines
-	public static Transform startCam;                
+	public Transform mainCam;                           // Main Camera
+	public static Transform cam;                
 	public static float Yposition=0.0f;
 	public static float Xposition=0.0f;
 	public static float Zposition=0.0f;
@@ -33,13 +33,13 @@ public class playerJump : MonoBehaviour
 	{
         direction = STATE_OF_OBJECT.AT_START;
         distance = 0.0f;
-        startCam = mainCam;
+        cam = mainCam;
 		player_along_z.speed = 0.0f;
 		Yposition = transform.position.y;
 		Xposition = transform.position.x;
 		Zposition = transform.position.z;
 		distance = Vector3.Distance (object0.position, object1.position);
-		Cam_position = startCam.position;
+		Cam_position = cam.position;
 		player_position = new Vector3 (Xposition, Yposition, Zposition);
 	}
 
@@ -77,11 +77,22 @@ public class playerJump : MonoBehaviour
 				}
 			}
 		}
+<<<<<<< HEAD:Assets/scripts/player_jump.cs
+		if (Input.GetKeyDown(KeyCode.Space) ){
+        
+			moveForward();
+		}
+		if (direction != STATE_OF_OBJECT.AT_START) 
+		{
+			cam.Translate(0.01f,0,0);
+			//print (direction);
+=======
 
         // Space is Pressed ( Computer)
 		if (Input.GetKeyDown(KeyCode.Space) )
         {
             moveForward();
+>>>>>>> be5f82bcc1c4a311813e64d209a1eadfc1980fbb:Assets/scripts/playerJump.cs
 		}
 
         if (direction == STATE_OF_OBJECT.LEFT) 
@@ -94,22 +105,47 @@ public class playerJump : MonoBehaviour
 			transform.Translate (0,0, Move_along_z2.speed);
 		}
 
-        // Move Camera when player starts
-        if (direction != STATE_OF_OBJECT.AT_START)
-        {
-            startCam.Translate(0.01f, 0, 0);
-        }
-
-        //  Game over
+<<<<<<< HEAD:Assets/scripts/player_jump.cs
         if (Mathf.Abs(transform.position.z) > ref_p.position.z || Vector3
                         .Distance(transform.position, new Vector3(Xposition, Yposition, Zposition)) > 14 * distance) 
         {
+            direction = STATE_OF_OBJECT.AT_START;
+			transform.position = new Vector3(Xposition,Yposition,Zposition);
+			cam.position=Cam_position;
+=======
+        // Move Camera when player starts
+        if (direction != STATE_OF_OBJECT.AT_START)
+        {
+            cam.Translate(0.01f, 0, 0);
+        }
+
+        //  Game over
+        if (Mathf.Abs(transform.position.z) > refPointPlayer.position.z) 
+        {
             gameOver();
+>>>>>>> be5f82bcc1c4a311813e64d209a1eadfc1980fbb:Assets/scripts/playerJump.cs
 		}
+
+        // Level Over
+        if (Vector3.Distance(transform.position, new Vector3(Xposition, Yposition, Zposition)) > 14 * distance)
+        {
+            gameOver();             // Only option at this time
+        }
+
 
 	}
 
-    private void moveForward()          //  Move Forward
+    // Method  called if Collision Occurs b/w player and any other cube
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.name == "Cube")
+        {
+            gameOver();
+        }
+    }
+
+    //  Move Forward
+    private void moveForward()          
     {
         transform.position = new Vector3(transform.position.x + distance,
                                            transform.position.y,
@@ -120,13 +156,15 @@ public class playerJump : MonoBehaviour
 
         else
             direction = (direction == STATE_OF_OBJECT.LEFT) ? STATE_OF_OBJECT.RIGHT : STATE_OF_OBJECT.LEFT;
+
     }
 
-    private void gameOver()             // Game Over
+    // Game Over
+    public void gameOver()             
     {
         direction = STATE_OF_OBJECT.AT_START;
         transform.position = new Vector3(Xposition, Yposition, Zposition);
-        startCam.position = Cam_position;
+        cam.position = Cam_position;
     }
 }
 
