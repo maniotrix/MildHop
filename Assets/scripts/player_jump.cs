@@ -81,10 +81,16 @@ public class player_jump : MonoBehaviour
 				}
 			}
 		}
-		if (Input.GetKeyDown(KeyCode.Space) )
-        {
-            moveForward();
+		if (Input.GetKeyDown(KeyCode.Space) ){
+        
+			moveForward();
 		}
+		if (direction != STATE_OF_OBJECT.AT_START) 
+		{
+			cam.Translate(0.01f,0,0);
+			//print (direction);
+		}
+
         if (direction == STATE_OF_OBJECT.LEFT) 
         {
 			transform.Translate (0,0, Move_along_z.speed);
@@ -97,16 +103,11 @@ public class player_jump : MonoBehaviour
 			//print (direction);
 		}
 
-        if (Vector3.Distance(transform.position, new Vector3(Xposition, Yposition, Zposition)) > 5 * distance) 
-        {
-			player_position = transform.position;
-			//cam.position=new Vector3((Cam_position.x+3*distance),Cam_position.y,Cam_position.z);
-			cam.Translate(0.01f,0,0);
-		}
         if (Mathf.Abs(transform.position.z) > ref_p.position.z || Vector3
                         .Distance(transform.position, new Vector3(Xposition, Yposition, Zposition)) > 14 * distance) 
         {
             direction = STATE_OF_OBJECT.AT_START;
+			transform.position = new Vector3(Xposition,Yposition,Zposition);
 			cam.position=Cam_position;
 		}
 
@@ -123,6 +124,7 @@ public class player_jump : MonoBehaviour
 
         else
             direction = (direction == STATE_OF_OBJECT.LEFT) ? STATE_OF_OBJECT.RIGHT : STATE_OF_OBJECT.LEFT;
+
     }
 
 
