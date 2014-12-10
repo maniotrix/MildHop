@@ -18,15 +18,15 @@ $ git clone https://github.com/maniotrix/MildHop.git
 
 Download demo release for all platforms from [here](https://www.dropbox.com/sh/m4wgh562rv37hh7/AAAPxytoqkgi2UQD_YjEdnmOa?dl=0).
 
-Linux users:
+### Linux users:
 
-```
-$ cd *path/to/demofilename*
-$ chmod 777 *demofilename*
-$ ./*demofilename*
-```
+<pre>
+$ cd <i>path/to/demofile</i>
+$ chmod 777 <i>demofile</i>
+$ ./<i>demofile</i>
+</pre>
 
-Windows users:
+### Windows users:
 
-    * Extract *demofilename_data* and *demofilename* in same folder
-    * Run *demofilename.exe*
+* Extract *demofile_data* and *demofile* in same folder
+* Run *demofile.exe*
