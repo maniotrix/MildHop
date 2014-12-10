@@ -15,7 +15,7 @@ public class player_collision : MonoBehaviour {
 			//player_jump.Yspeed=0.0f;
 			//transform.position=new Vector3(player_jump.Xposition,player_jump.Yposition,transform.position.z);
 			
-			transform.position = new Vector3(player_jump.Xposition,player_jump.Yposition,player_jump.Zposition);
+			transform.position = new Vector3(playerJump.Xposition,playerJump.Yposition,playerJump.Zposition);
 			print("fefd");
 		}
 	}
