@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class player_jump : MonoBehaviour
+public class player_jump: MonoBehaviour
 {
     public enum STATE_OF_OBJECT
     {
@@ -103,6 +103,7 @@ public class player_jump : MonoBehaviour
 			//print (direction);
 		}
 
+       
         if (Mathf.Abs(transform.position.z) > ref_p.position.z || Vector3
                         .Distance(transform.position, new Vector3(Xposition, Yposition, Zposition)) > 14 * distance) 
         {
