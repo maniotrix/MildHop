@@ -36,6 +36,7 @@ public class playerJump : MonoBehaviour
             direction = STATE_OF_OBJECT.AT_START;
             distance = 0.0f;
             startCam = mainCam;
+            startCam.position = new Vector3(transform.position.x, startCam.position.y, startCam.position.z); 
             player_along_z.speed = 0.0f;
             Yposition = transform.position.y;
             Xposition = transform.position.x;
@@ -119,8 +120,8 @@ public class playerJump : MonoBehaviour
                 transform.Translate(0, 0, Move_along_z2.speed);
             }
 
-            // Move Camera when player starts
-            if (direction != STATE_OF_OBJECT.AT_START)
+            // Move Camera when player starts and stops when camera and player lie on same line
+            if (direction != STATE_OF_OBJECT.AT_START && transform.position.x > startCam.position.x) 
             {
                 startCam.Translate(0.01f, 0, 0);
             }
