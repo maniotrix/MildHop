@@ -37,7 +37,7 @@ public class playerJump : MonoBehaviour
             distance = 0.0f;
             startCam = mainCam;
             //  Fix Camera just above player at start
-            startCam.position = new Vector3(transform.position.x, startCam.position.y, startCam.position.z);
+            //startCam.position = new Vector3(transform.position.x, startCam.position.y, startCam.position.z);
             player_along_z.speed = 0.0f;
             Yposition = transform.position.y;
             Xposition = transform.position.x;
