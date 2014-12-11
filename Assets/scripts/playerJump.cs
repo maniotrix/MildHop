@@ -67,14 +67,18 @@ public class playerJump : MonoBehaviour
                 if (touch.phase == TouchPhase.Moved)
                 {
                     lp = touch.position;
+
+                    //  Up - Down Movement at Start
+                    if(direction==STATE_OF_OBJECT.AT_START)
+                    {
+                        transform.Translate(0, 0, fp.y - lp.y); 
+                    }
                 }
                 if (touch.phase == TouchPhase.Ended)
                 {
 
                     if ((fp.x - lp.x) > 80) // left swipe
                     {
-
-
 
                     }
                     else if ((fp.x - lp.x) < -80) // right swipe
@@ -92,6 +96,16 @@ public class playerJump : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 moveForward();
+            }
+
+            if(Input.GetKey(KeyCode.UpArrow)&& direction==STATE_OF_OBJECT.AT_START)
+            {
+                transform.Translate(0, 0, Math.Abs(Move_along_z.speed) + 0.01f); 
+            }
+
+            else if(Input.GetKey(KeyCode.DownArrow)&&direction==STATE_OF_OBJECT.AT_START)
+            {
+                transform.Translate(0, 0, -Math.Abs(Move_along_z2.speed) - 0.01f); 
             }
 
             if (direction == STATE_OF_OBJECT.LEFT)
