@@ -69,7 +69,7 @@ public class playerJump : MonoBehaviour
                 {
                     lp = touch.position;
 
-                    //  Movement of Player at START position
+                    //  Movement of Player at START position(Touch)
                     if (direction == STATE_OF_OBJECT.AT_START && touch.deltaPosition.y > 0)
                         transform.Translate(0, 0, 0.1f);
 
@@ -101,6 +101,7 @@ public class playerJump : MonoBehaviour
                 moveForward();
             }
 
+            //  Movement of Player at START position(Keyboard)
             if(Input.GetKey(KeyCode.UpArrow)&& direction==STATE_OF_OBJECT.AT_START)
             {
                 transform.Translate(0, 0, Math.Abs(Move_along_z.speed) + 0.01f); 
@@ -124,16 +125,22 @@ public class playerJump : MonoBehaviour
             // Move Camera when player starts and stops when camera and player lie on same line
             if (direction != STATE_OF_OBJECT.AT_START && transform.position.x > startCam.position.x) 
             {
-                startCam.Translate(0.01f, 0, 0);
+                startCam.Translate((transform.position.x - startCam.position.x) * 0.0075f, 0, 0); 
             }
 
-            //  Game over
-            if (Mathf.Abs(transform.position.z) > ref_p.position.z || Vector3
-                            .Distance(transform.position, new Vector3(Xposition, Yposition, Zposition)) > 14 * distance)
+            //  Game over : Player Out of sceen
+            if (Mathf.Abs(transform.position.z) > ref_p.position.z)
             {
                 gameOver();
             }
-        }       //  try
+
+            //  Level Over
+            if( Vector3.Distance(transform.position, new Vector3(Xposition, Yposition, Zposition)) > 14 * distance)
+            {
+                gameOver();
+            }
+
+        }   //  try
         catch(Exception e)
         {
             print(e.Message);
