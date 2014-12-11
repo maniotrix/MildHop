@@ -11,6 +11,15 @@ public class playerJump : MonoBehaviour
         RIGHT
     } ;
 
+    public enum GAME_STATE
+    {
+        BEFORE_PLAYING,
+        PLAYING,
+        PAUSE,
+        GAME_OVER,
+        LEVEL_OVER
+    };
+
     public Transform object0;                           // Used to get distance
     public Transform object1;                           // Used to get distance
 	public Transform ref_p;                             // reference object
@@ -20,7 +29,8 @@ public class playerJump : MonoBehaviour
 	public static float Yposition=0.0f;
 	public static float Xposition=0.0f;
 	public static float Zposition=0.0f;
-    public static STATE_OF_OBJECT direction;            //  State of object
+    public static STATE_OF_OBJECT direction;            //  State of player object
+    public static GAME_STATE currentGameState;          //  State of Game
 	public static Vector3 Cam_position;
 	Vector3 player_position ;
 
@@ -34,10 +44,9 @@ public class playerJump : MonoBehaviour
         try
         {
             direction = STATE_OF_OBJECT.AT_START;
+            currentGameState = GAME_STATE.BEFORE_PLAYING;
             distance = 0.0f;
             startCam = mainCam;
-            //  Fix Camera just above player at start
-            //startCam.position = new Vector3(transform.position.x, startCam.position.y, startCam.position.z);
             player_along_z.speed = 0.0f;
             Yposition = transform.position.y;
             Xposition = transform.position.x;
@@ -57,87 +66,91 @@ public class playerJump : MonoBehaviour
 	{
         try
         {
-            // Getting Touch Inputs(Phone Only)
-            foreach (Touch touch in Input.touches)
+            //  Will Remove comment after add GUI controls
+            //if (currentGameState == GAME_STATE.PLAYING)
             {
-                if (touch.phase == TouchPhase.Began)
+                // Getting Touch Inputs(Phone Only)
+                foreach (Touch touch in Input.touches)
                 {
-                    fp = touch.position;
-                    lp = touch.position;
-                }
-                if (touch.phase == TouchPhase.Moved)
-                {
-                    lp = touch.position;
-
-                    //  Movement of Player at START position(Touch)
-                    if (direction == STATE_OF_OBJECT.AT_START && touch.deltaPosition.y > 0)
-                        transform.Translate(0, 0, 0.1f);
-
-                    else if(direction == STATE_OF_OBJECT.AT_START && touch.deltaPosition.y < 0)
-                        transform.Translate(0, 0, -0.1f);
-
-                }
-                if (touch.phase == TouchPhase.Ended)
-                {
-
-                    if ((fp.x - lp.x) > 80) // left swipe
+                    if (touch.phase == TouchPhase.Began)
                     {
+                        fp = touch.position;
+                        lp = touch.position;
+                    }
+                    if (touch.phase == TouchPhase.Moved)
+                    {
+                        lp = touch.position;
+
+                        //  Movement of Player at START position(Touch)
+                        if (direction == STATE_OF_OBJECT.AT_START && touch.deltaPosition.y > 0)
+                            transform.Translate(0, 0, 0.1f);
+
+                        else if (direction == STATE_OF_OBJECT.AT_START && touch.deltaPosition.y < 0)
+                            transform.Translate(0, 0, -0.1f);
 
                     }
-                    else if ((fp.x - lp.x) < -80) // right swipe
+                    if (touch.phase == TouchPhase.Ended)
                     {
-                        moveForward();
+
+                        if ((fp.x - lp.x) > 80) // left swipe
+                        {
+
+                        }
+                        else if ((fp.x - lp.x) < -80) // right swipe
+                        {
+                            moveForward();
+                        }
+                        else if ((fp.y - lp.y) < -80) // up swipe
+                        {
+                            // add your jumping code here
+                        }
                     }
-                    else if ((fp.y - lp.y) < -80) // up swipe
-                    {
-                        // add your jumping code here
-                    }
+                }       //  Touch Inputs
+
+                // Space is Pressed ( Computer)
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    moveForward();
                 }
-            }       //  Touch Inputs
 
-            // Space is Pressed ( Computer)
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                moveForward();
-            }
+                //  Movement of Player at START position(Keyboard)
+                if (Input.GetKey(KeyCode.UpArrow) && direction == STATE_OF_OBJECT.AT_START)
+                {
+                    transform.Translate(0, 0, Math.Abs(Move_along_z.speed) + 0.01f);
+                }
 
-            //  Movement of Player at START position(Keyboard)
-            if(Input.GetKey(KeyCode.UpArrow)&& direction==STATE_OF_OBJECT.AT_START)
-            {
-                transform.Translate(0, 0, Math.Abs(Move_along_z.speed) + 0.01f); 
-            }
+                else if (Input.GetKey(KeyCode.DownArrow) && direction == STATE_OF_OBJECT.AT_START)
+                {
+                    transform.Translate(0, 0, -Math.Abs(Move_along_z2.speed) - 0.01f);
+                }
 
-            else if(Input.GetKey(KeyCode.DownArrow)&&direction==STATE_OF_OBJECT.AT_START)
-            {
-                transform.Translate(0, 0, -Math.Abs(Move_along_z2.speed) - 0.01f); 
-            }
+                if (direction == STATE_OF_OBJECT.LEFT)
+                {
+                    transform.Translate(0, 0, Move_along_z.speed);
+                }
 
-            if (direction == STATE_OF_OBJECT.LEFT)
-            {
-                transform.Translate(0, 0, Move_along_z.speed);
-            }
+                if (direction == STATE_OF_OBJECT.RIGHT)
+                {
+                    transform.Translate(0, 0, Move_along_z2.speed);
+                }
 
-            if (direction == STATE_OF_OBJECT.RIGHT)
-            {
-                transform.Translate(0, 0, Move_along_z2.speed);
-            }
+                // Move Camera when player starts and stops when camera and player lie on same line
+                if (direction != STATE_OF_OBJECT.AT_START && transform.position.x > startCam.position.x)
+                {
+                    startCam.Translate((transform.position.x - startCam.position.x) * 0.0075f, 0, 0);
+                }
 
-            // Move Camera when player starts and stops when camera and player lie on same line
-            if (direction != STATE_OF_OBJECT.AT_START && transform.position.x > startCam.position.x) 
-            {
-                startCam.Translate((transform.position.x - startCam.position.x) * 0.0075f, 0, 0); 
-            }
+                //  Game over : Player Out of sceen
+                if (Mathf.Abs(transform.position.z) > ref_p.position.z)
+                {
+                    gameOver();
+                }
 
-            //  Game over : Player Out of sceen
-            if (Mathf.Abs(transform.position.z) > ref_p.position.z)
-            {
-                gameOver();
-            }
-
-            //  Level Over
-            if( Vector3.Distance(transform.position, new Vector3(Xposition, Yposition, Zposition)) > 14 * distance)
-            {
-                gameOver();
+                //  Level Over
+                if (Vector3.Distance(transform.position, new Vector3(Xposition, Yposition, Zposition)) > 14 * distance)
+                {
+                    gameOver();
+                }
             }
 
         }   //  try
@@ -154,6 +167,31 @@ public class playerJump : MonoBehaviour
         {
             gameOver();
         }
+    }
+
+    void OnGUI()
+    {
+        switch (currentGameState)
+        {
+            case GAME_STATE.BEFORE_PLAYING:
+                break;
+            case GAME_STATE.PLAYING:
+                break;
+            case GAME_STATE.PAUSE:
+                break;
+            case GAME_STATE.GAME_OVER:
+                break;
+            case GAME_STATE.LEVEL_OVER:
+                break;
+            default:
+                break;
+        }
+        
+        
+        /*if (GUI.Button(new Rect(800, 550, 150, 50), "Jump"))
+        {
+            moveForward();
+        }*/
     }
 
     private void moveForward()          //  Move Forward
@@ -191,4 +229,8 @@ public class playerJump : MonoBehaviour
     }
 }
 
+#if UNITY_EDITOR || UNITY_STANDALONE
 
+#elif UNITY_IPHONE || UNITY_ANDROID || UNITY_WINRT
+
+#endif
