@@ -67,7 +67,7 @@ public class playerJump : MonoBehaviour
         try
         {
             //  Will Remove comment after add GUI controls
-            //if (currentGameState == GAME_STATE.PLAYING)
+            if (currentGameState == GAME_STATE.PLAYING)
             {
                 // Getting Touch Inputs(Phone Only)
                 foreach (Touch touch in Input.touches)
@@ -174,8 +174,16 @@ public class playerJump : MonoBehaviour
         switch (currentGameState)
         {
             case GAME_STATE.BEFORE_PLAYING:
+                GUI.Box(new Rect(0.25f*Screen.width, 0.25f*Screen.height, 0.5f*Screen.width, 0.5f*Screen.height), "Game Menu");
+                if (GUI.Button(new Rect(0.3125f * Screen.width, 0.3125f * Screen.height, 0.125f * Screen.width, 0.125f * Screen.height), "Level 1")) 
+                {
+                    currentGameState = GAME_STATE.PLAYING;
+                }
+
                 break;
+
             case GAME_STATE.PLAYING:
+                //sif(GUI.Button(new Rect(Screen.width)))
                 break;
             case GAME_STATE.PAUSE:
                 break;
