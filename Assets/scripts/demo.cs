@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class demo : MonoBehaviour 
 {
@@ -10,15 +11,30 @@ public class demo : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		Yposition = transform.position.y;
-		Xposition = transform.position.x;
-		Zposition = transform.position.z;
+        try
+        {
+            Yposition = transform.position.y;
+            Xposition = transform.position.x;
+            Zposition = transform.position.z;
+        }
+        catch(Exception e)
+        {
+            print(e.Message);
+        }
 	}
+    
 	
 	// Update is called once per frame
 	void Update () 
     {
-		transform.Translate (Yspeed, 0,0);
+        try
+        {
+            transform.Translate(Yspeed, 0, 0);
+        }
+        catch (Exception e)
+        {
+            print(e.Message);
+        }
 	}
 
 }

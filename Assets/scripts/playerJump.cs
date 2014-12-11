@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System;
 
 public class playerJump : MonoBehaviour
 {
@@ -31,102 +32,129 @@ public class playerJump : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-        direction = STATE_OF_OBJECT.AT_START;
-        distance = 0.0f;
-        startCam = mainCam;
-		player_along_z.speed = 0.0f;
-		Yposition = transform.position.y;
-		Xposition = transform.position.x;
-		Zposition = transform.position.z;
-		distance = Vector3.Distance (object0.position, object1.position);
-		Cam_position = startCam.position;
-		player_position = new Vector3 (Xposition, Yposition, Zposition);
+        try
+        {
+            direction = STATE_OF_OBJECT.AT_START;
+            distance = 0.0f;
+            startCam = mainCam;
+            player_along_z.speed = 0.0f;
+            Yposition = transform.position.y;
+            Xposition = transform.position.x;
+            Zposition = transform.position.z;
+            distance = Vector3.Distance(object0.position, object1.position);
+            Cam_position = startCam.position;
+            player_position = new Vector3(Xposition, Yposition, Zposition);
+        }
+        catch (Exception e)
+        {
+            print(e.Message);
+        }
 	}
 
 	// Update is called once per frame
 	void Update ()
-	{	
-		// Getting Touch Inputs(Phone Only)
-        foreach (Touch touch in Input.touches)
-		{
-			if (touch.phase == TouchPhase.Began)
-			{
-				fp = touch.position;
-				lp = touch.position;
-			}
-			if (touch.phase == TouchPhase.Moved )
-			{
-				lp = touch.position;
-			}
-			if(touch.phase == TouchPhase.Ended)
-			{ 
-				
-				if((fp.x - lp.x) > 80) // left swipe
-				{
-					
-
-					
-				}
-				else if((fp.x - lp.x) < -80) // right swipe
-				{
-                    moveForward();
-				}
-				else if((fp.y - lp.y) < -80 ) // up swipe
-				{
-					// add your jumping code here
-				}
-			}
-		}
-
-        // Space is Pressed ( Computer)
-		if (Input.GetKeyDown(KeyCode.Space) )
+	{
+        try
         {
-            moveForward();
-		}
+            // Getting Touch Inputs(Phone Only)
+            foreach (Touch touch in Input.touches)
+            {
+                if (touch.phase == TouchPhase.Began)
+                {
+                    fp = touch.position;
+                    lp = touch.position;
+                }
+                if (touch.phase == TouchPhase.Moved)
+                {
+                    lp = touch.position;
+                }
+                if (touch.phase == TouchPhase.Ended)
+                {
 
-        if (direction == STATE_OF_OBJECT.LEFT) 
-        {
-			transform.Translate (0,0, Move_along_z.speed);
-		}
+                    if ((fp.x - lp.x) > 80) // left swipe
+                    {
 
-        if (direction == STATE_OF_OBJECT.RIGHT) 
-        {
-			transform.Translate (0,0, Move_along_z2.speed);
-		}
 
-        // Move Camera when player starts
-        if (direction != STATE_OF_OBJECT.AT_START)
+
+                    }
+                    else if ((fp.x - lp.x) < -80) // right swipe
+                    {
+                        moveForward();
+                    }
+                    else if ((fp.y - lp.y) < -80) // up swipe
+                    {
+                        // add your jumping code here
+                    }
+                }
+            }
+
+            // Space is Pressed ( Computer)
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                moveForward();
+            }
+
+            if (direction == STATE_OF_OBJECT.LEFT)
+            {
+                transform.Translate(0, 0, Move_along_z.speed);
+            }
+
+            if (direction == STATE_OF_OBJECT.RIGHT)
+            {
+                transform.Translate(0, 0, Move_along_z2.speed);
+            }
+
+            // Move Camera when player starts
+            if (direction != STATE_OF_OBJECT.AT_START)
+            {
+                startCam.Translate(0.01f, 0, 0);
+            }
+
+            //  Game over
+            if (Mathf.Abs(transform.position.z) > ref_p.position.z || Vector3
+                            .Distance(transform.position, new Vector3(Xposition, Yposition, Zposition)) > 14 * distance)
+            {
+                gameOver();
+            }
+        }       //  try
+        catch(Exception e)
         {
-            startCam.Translate(0.01f, 0, 0);
+            print(e.Message);
         }
-
-        //  Game over
-        if (Mathf.Abs(transform.position.z) > ref_p.position.z || Vector3
-                        .Distance(transform.position, new Vector3(Xposition, Yposition, Zposition)) > 14 * distance) 
-        {
-            gameOver();
-		}
-
 	}
 
     private void moveForward()          //  Move Forward
     {
-        transform.position = new Vector3(transform.position.x + distance,
-                                           transform.position.y,
-                                           transform.position.z); 
+        try
+        {
+            transform.position = new Vector3(transform.position.x + distance,
+                                               transform.position.y,
+                                               transform.position.z);
 
-        if (direction == STATE_OF_OBJECT.AT_START)
-            direction = STATE_OF_OBJECT.LEFT;
+            if (direction == STATE_OF_OBJECT.AT_START)
+                direction = STATE_OF_OBJECT.LEFT;
 
-        else
-            direction = (direction == STATE_OF_OBJECT.LEFT) ? STATE_OF_OBJECT.RIGHT : STATE_OF_OBJECT.LEFT;
+            else
+                direction = (direction == STATE_OF_OBJECT.LEFT) ? STATE_OF_OBJECT.RIGHT : STATE_OF_OBJECT.LEFT;
+        }
+        catch(Exception e)
+        {
+            print(e.Message);
+        }
     }
 
     private void gameOver()             // Game Over
     {
-        direction = STATE_OF_OBJECT.AT_START;
-        transform.position = new Vector3(Xposition, Yposition, Zposition);
-        startCam.position = Cam_position;
+        try
+        {
+            direction = STATE_OF_OBJECT.AT_START;
+            transform.position = new Vector3(Xposition, Yposition, Zposition);
+            startCam.position = Cam_position;
+        }
+        catch (Exception e)
+        {
+            print(e.Message);
+        }
     }
 }
 

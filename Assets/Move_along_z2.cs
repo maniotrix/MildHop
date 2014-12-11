@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Move_along_z2 : MonoBehaviour 
 {
@@ -15,13 +16,20 @@ public class Move_along_z2 : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
-        if (Mathf.Abs(transform.position.z) >= refPointGrid.position.z) 
-        {	
-			speed=-speed;
-		}
-		if (Time.timeScale == 1) 
+        try
         {
-			transform.Translate (0, 0, speed);
-		}
+            if (Mathf.Abs(transform.position.z) >= refPointGrid.position.z)
+            {
+                speed = -speed;
+            }
+            if (Time.timeScale == 1)
+            {
+                transform.Translate(0, 0, speed);
+            }
+        }
+        catch (Exception e)
+        {
+            print(e.Message);
+        }
 	}
 }

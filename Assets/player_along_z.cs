@@ -1,19 +1,31 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
-public class player_along_z : MonoBehaviour {
+public class player_along_z : MonoBehaviour 
+{
 	public static float speed=0.06f*Time.timeScale;
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+    {
 	
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		if (Time.timeScale == 1) {
-			transform.Translate (speed, 0, 0);
-		}
+	void Update () 
+    {
+        try
+        {
+            if (Time.timeScale == 1)
+            {
+                transform.Translate(speed, 0, 0);
+            }
+        }
+        catch (Exception e)
+        {
+            print(e.Message);
+        }
 	}
 
 
