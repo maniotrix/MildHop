@@ -25,9 +25,8 @@ public class playerJump : MonoBehaviour
 	Vector3 player_position ;
 
     //  For Touch Inputs Only
-	private Vector2 fp;                                 // first finger position
-	private Vector2 lp;                                 // last finger position
-
+	private Vector2 fp;                                 //  first finger position
+	private Vector2 lp;                                 //  last finger position
 
 	// Use this for initialization
 	void Start ()
@@ -68,11 +67,13 @@ public class playerJump : MonoBehaviour
                 {
                     lp = touch.position;
 
-                    //  Up - Down Movement at Start
-                    if(direction==STATE_OF_OBJECT.AT_START)
-                    {
-                        transform.Translate(0, 0, fp.y - lp.y); 
-                    }
+                    //  Movement of Player at START position
+                    if (direction == STATE_OF_OBJECT.AT_START && touch.deltaPosition.y > 0)
+                        transform.Translate(0, 0, 0.1f);
+
+                    else if(direction == STATE_OF_OBJECT.AT_START && touch.deltaPosition.y < 0)
+                        transform.Translate(0, 0, -0.1f);
+
                 }
                 if (touch.phase == TouchPhase.Ended)
                 {
@@ -90,7 +91,7 @@ public class playerJump : MonoBehaviour
                         // add your jumping code here
                     }
                 }
-            }
+            }       //  Touch Inputs
 
             // Space is Pressed ( Computer)
             if (Input.GetKeyDown(KeyCode.Space))
@@ -136,6 +137,15 @@ public class playerJump : MonoBehaviour
             print(e.Message);
         }
 	}
+
+    // Method  called if Collision Occurs b/w player and any other cube
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.name == "Cube")
+        {
+            gameOver();
+        }
+    }
 
     private void moveForward()          //  Move Forward
     {

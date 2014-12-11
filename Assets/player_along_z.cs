@@ -4,12 +4,12 @@ using System;
 
 public class player_along_z : MonoBehaviour 
 {
-	public static float speed=0.06f*Time.timeScale;
+    public static float speed;
 
 	// Use this for initialization
 	void Start () 
     {
-	
+        speed = 0.06f * Time.timeScale;
 	}
 	
 	// Update is called once per frame
