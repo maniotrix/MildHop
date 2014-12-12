@@ -104,7 +104,8 @@ public partial class playerJump : MonoBehaviour
                 break;
 
             case GAME_STATE.LEVEL_OVER:
-                break;
+                goto case GAME_STATE.GAME_OVER;         //  Will be deleted when a method and scence is made for next level
+                //break;        //  Comment OUt due to unreachable code
 
             default:
                 break;

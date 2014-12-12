@@ -140,7 +140,8 @@ public partial class playerJump : MonoBehaviour
                 //  Level Over
                 if (Vector3.Distance(transform.position, new Vector3(Xposition, Yposition, Zposition)) > 14 * distance)
                 {
-                    gameOver();
+                    //gameOver();
+                    currentGameState = GAME_STATE.LEVEL_OVER;
                 }
             }
 
@@ -161,7 +162,7 @@ public partial class playerJump : MonoBehaviour
         }
     }
 
-    public void moveForward()          //  Move Forward
+    private void moveForward()          //  Move Forward
     {
         try
         {
@@ -176,20 +177,6 @@ public partial class playerJump : MonoBehaviour
                 direction = (direction == STATE_OF_OBJECT.LEFT) ? STATE_OF_OBJECT.RIGHT : STATE_OF_OBJECT.LEFT;
         }
         catch(Exception e)
-        {
-            print(e.Message);
-        }
-    }
-
-    private void gameOver()             // Game Over
-    {
-        try
-        {
-            direction = STATE_OF_OBJECT.AT_START;
-            transform.position = new Vector3(Xposition, Yposition, Zposition);
-            startCam.position = Cam_position;
-        }
-        catch (Exception e)
         {
             print(e.Message);
         }
