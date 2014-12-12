@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System;
 
-public class playerJump : MonoBehaviour
+public partial class playerJump : MonoBehaviour
 {
     public enum STATE_OF_OBJECT                         // State of Player
     {
@@ -10,15 +10,6 @@ public class playerJump : MonoBehaviour
         LEFT,
         RIGHT
     } ;
-
-    public enum GAME_STATE
-    {
-        BEFORE_PLAYING,
-        PLAYING,
-        PAUSE,
-        GAME_OVER,
-        LEVEL_OVER
-    };
 
     public Transform object0;                           // Used to get distance
     public Transform object1;                           // Used to get distance
@@ -30,7 +21,6 @@ public class playerJump : MonoBehaviour
 	public static float Xposition=0.0f;
 	public static float Zposition=0.0f;
     public static STATE_OF_OBJECT direction;            //  State of player object
-    public static GAME_STATE currentGameState;          //  State of Game
 	public static Vector3 Cam_position;
 	Vector3 player_position ;
 
@@ -44,7 +34,7 @@ public class playerJump : MonoBehaviour
         try
         {
             direction = STATE_OF_OBJECT.AT_START;
-            currentGameState = GAME_STATE.BEFORE_PLAYING;
+            playerJump.currentGameState = playerJump.GAME_STATE.BEFORE_PLAYING;
             distance = 0.0f;
             startCam = mainCam;
             player_along_z.speed = 0.0f;
@@ -67,7 +57,7 @@ public class playerJump : MonoBehaviour
         try
         {
             //  Will Remove comment after add GUI controls
-            if (currentGameState == GAME_STATE.PLAYING)
+            if (playerJump.currentGameState == playerJump.GAME_STATE.PLAYING)
             {
                 // Getting Touch Inputs(Phone Only)
                 foreach (Touch touch in Input.touches)
@@ -108,7 +98,7 @@ public class playerJump : MonoBehaviour
                 }       //  Touch Inputs
 
                 // Space is Pressed ( Computer)
-                if (Input.GetKeyDown(KeyCode.Space))
+                if (Input.GetKeyDown(KeyCode.Space)||Input.GetKeyDown(KeyCode.RightArrow))
                 {
                     moveForward();
                 }
@@ -143,7 +133,8 @@ public class playerJump : MonoBehaviour
                 //  Game over : Player Out of sceen
                 if (Mathf.Abs(transform.position.z) > ref_p.position.z)
                 {
-                    gameOver();
+                    //gameOver();
+                    currentGameState = GAME_STATE.GAME_OVER;
                 }
 
                 //  Level Over
@@ -165,44 +156,12 @@ public class playerJump : MonoBehaviour
     {
         if (other.gameObject.name == "Cube")
         {
-            gameOver();
+            //gameOver();
+            currentGameState = GAME_STATE.GAME_OVER;
         }
     }
 
-    void OnGUI()
-    {
-        switch (currentGameState)
-        {
-            case GAME_STATE.BEFORE_PLAYING:
-                GUI.Box(new Rect(0.25f*Screen.width, 0.25f*Screen.height, 0.5f*Screen.width, 0.5f*Screen.height), "Game Menu");
-                if (GUI.Button(new Rect(0.3125f * Screen.width, 0.3125f * Screen.height, 0.125f * Screen.width, 0.125f * Screen.height), "Level 1")) 
-                {
-                    currentGameState = GAME_STATE.PLAYING;
-                }
-
-                break;
-
-            case GAME_STATE.PLAYING:
-                //sif(GUI.Button(new Rect(Screen.width)))
-                break;
-            case GAME_STATE.PAUSE:
-                break;
-            case GAME_STATE.GAME_OVER:
-                break;
-            case GAME_STATE.LEVEL_OVER:
-                break;
-            default:
-                break;
-        }
-        
-        
-        /*if (GUI.Button(new Rect(800, 550, 150, 50), "Jump"))
-        {
-            moveForward();
-        }*/
-    }
-
-    private void moveForward()          //  Move Forward
+    public void moveForward()          //  Move Forward
     {
         try
         {
