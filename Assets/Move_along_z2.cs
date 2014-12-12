@@ -18,13 +18,33 @@ public class Move_along_z2 : MonoBehaviour
     {
         try
         {
-            if (Mathf.Abs(transform.position.z) >= refPointGrid.position.z)
+            switch (playerJump.currentGameState)
             {
-                speed = -speed;
-            }
-            if (Time.timeScale == 1)
-            {
-                transform.Translate(0, 0, speed);
+                case playerJump.GAME_STATE.BEFORE_PLAYING:
+                    break;
+
+                case playerJump.GAME_STATE.PLAYING:
+                    if (Mathf.Abs(transform.position.z) >= refPointGrid.position.z)
+                    {
+                        speed = -speed;
+                    }
+                    if (Time.timeScale == 1)
+                    {
+                        transform.Translate(0, 0, speed);
+                    }
+                    break;
+
+                case playerJump.GAME_STATE.PAUSE:
+                    break;
+
+                case playerJump.GAME_STATE.GAME_OVER:
+                    break;
+
+                case playerJump.GAME_STATE.LEVEL_OVER:
+                    break;
+
+                default:
+                    break;
             }
         }
         catch (Exception e)

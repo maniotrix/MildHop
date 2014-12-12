@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Move_along_z.cs" />
      <Compile Include="Assets\Move_along_z2.cs" />
+     <Compile Include="Assets\guiControl.cs" />
      <Compile Include="Assets\player_along_z.cs" />
      <Compile Include="Assets\scripts\demo.cs" />
      <Compile Include="Assets\scripts\playerJump.cs" />
