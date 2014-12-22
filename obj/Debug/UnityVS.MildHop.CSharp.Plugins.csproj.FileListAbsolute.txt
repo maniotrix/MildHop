@@ -1,0 +1,9 @@
+C:\Users\Govind Sahai\SkyDrive\GitHub\MildHop\Temp\UnityVS_bin\Debug\Assembly-CSharp-firstpass.dll
+C:\Users\Govind Sahai\SkyDrive\GitHub\MildHop\Temp\UnityVS_bin\Debug\Assembly-CSharp-firstpass.pdb
+C:\Users\Govind Sahai\SkyDrive\GitHub\MildHop\Temp\UnityVS_bin\Debug\UnityEditor.dll
+C:\Users\Govind Sahai\SkyDrive\GitHub\MildHop\Temp\UnityVS_bin\Debug\UnityEngine.dll
+C:\Users\Govind Sahai\SkyDrive\GitHub\MildHop\Temp\UnityVS_bin\Debug\UnityEngine.xml
+C:\Users\Govind Sahai\SkyDrive\GitHub\MildHop\Temp\UnityVS_bin\Debug\UnityEditor.xml
+C:\Users\Govind Sahai\SkyDrive\GitHub\MildHop\obj\Debug\UnityVS.MildHop.CSharp.Plugins.csprojResolveAssemblyReference.cache
+C:\Users\Govind Sahai\SkyDrive\GitHub\MildHop\obj\Debug\Assembly-CSharp-firstpass.dll
+C:\Users\Govind Sahai\SkyDrive\GitHub\MildHop\obj\Debug\Assembly-CSharp-firstpass.pdb

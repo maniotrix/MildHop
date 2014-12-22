@@ -48,14 +48,32 @@
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="Assembly-UnityScript-firstpass">
+      <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Move_along_z.cs" />
-    <Compile Include="Assets\Move_along_z2.cs" />
-    <Compile Include="Assets\guiControl.cs" />
-    <Compile Include="Assets\player_along_z.cs" />
-    <Compile Include="Assets\scripts\demo.cs" />
-    <Compile Include="Assets\scripts\playerJump.cs" />
+    <ProjectReference Include="UnityVS.MildHop.CSharp.Plugins.csproj">
+      <Project>{EE3BD144-7C2A-ECB1-0913-BA425CCED88B}</Project>
+      <Name>UnityVS.MildHop.CSharp.Plugins</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\scripts\mainGame\level3\MoveAlongZ2Level3.cs" />
+    <Compile Include="Assets\scripts\mainGame\level3\MoveAlongZLevel3.cs" />
+    <Compile Include="Assets\scripts\mainGame\level3\playerJumpLevel3.cs" />
+    <Compile Include="Assets\scripts\mainGame\level3\sceneControlLevel3.cs" />
+    <Compile Include="Assets\scripts\mainGame\level1\MoveAlongZLevel1.cs" />
+    <Compile Include="Assets\scripts\mainGame\level1\MoveAlongZ2Level1.cs" />
+    <Compile Include="Assets\scripts\mainGame\level1\playerJumpLevel1.cs" />
+    <Compile Include="Assets\scripts\mainGame\level1\sceneControlLevel1.cs" />
+    <Compile Include="Assets\scripts\mainGame\level2\MoveAlongZLevel2.cs" />
+    <Compile Include="Assets\scripts\mainGame\level2\MoveAlongZ2Level2.cs" />
+    <Compile Include="Assets\scripts\mainGame\level2\playerJumpLevel2.cs" />
+    <Compile Include="Assets\scripts\mainGame\level2\sceneControlLevel2.cs" />
+    <Compile Include="Assets\scripts\startScene\levelSelector.cs" />
+    <Compile Include="Assets\scripts\startScene\startScene.cs" />
+    <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2013\UnityVS.CSharp.targets" />
