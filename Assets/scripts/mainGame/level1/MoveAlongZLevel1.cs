@@ -10,11 +10,13 @@ public class MoveAlongZLevel1 : MonoBehaviour
 	// Use this for initialization
 	void Start () 
     {
-        speed = new float[11]{
-            0.02f,0.02f,0.02f,
-            0.02f,0.02f,0.02f,
-            0.02f,0.02f,0.02f,
-            0.02f,0.02f
+        speed = new float[21]{
+            0.02f,-0.02f,0.02f,-0.02f,
+            0.02f,-0.02f,0.02f,-0.02f,
+            0.02f,-0.02f,0.02f,-0.02f,
+            0.02f,-0.02f,0.02f,-0.02f,
+            0.02f,-0.02f,0.02f,-0.02f,
+            0.02f
         };
 	}
 	
