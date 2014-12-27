@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.WindowsPhone;
-using System.Collections;
 using System;
 
 public class startScene : MonoBehaviour

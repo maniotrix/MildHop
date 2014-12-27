@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 using System;
 
 public partial class playerJumpLevel1 : MonoBehaviour
@@ -9,46 +8,46 @@ public partial class playerJumpLevel1 : MonoBehaviour
         AT_START,
         PLAYING,
     };
-    
+
     public Transform object0;                           // Used to get distance
     public Transform object1;                           // Used to get distance
-	public Transform ref_p;                             // reference object
-	public Transform mainCam;                           // Main Camera
+    public Transform ref_p;                             // reference object
+    public Transform mainCam;                           // Main Camera
     float distance;                                     // Distance between lines         
     public static STATE_OF_PLAYER currentStatus;        // State of player object
     public static Vector3 initialPositionPlayer;        // Initial Position of Player 
     public int currentPosition = -1;
 
     //  For Touch Inputs Only
-	private Vector2 fp;                                 //  first finger position
-	private Vector2 lp;                                 //  last finger position
+    private Vector2 fp;                                 //  first finger position
+    private Vector2 lp;                                 //  last finger position
 
-	// Use this for initialization
-	void Start ()
-	{
+    // Use this for initialization
+    void Start()
+    {
         try
         {
             currentStatus = STATE_OF_PLAYER.AT_START;
             currentGameState = GAME_STATE.BEFORE_PLAYING;
             distance = Vector3.Distance(object0.position, object1.position);
-            initialPositionPlayer = new Vector3(transform.position.x, transform.position.y, transform.position.z); 
+            initialPositionPlayer = new Vector3(transform.position.x, transform.position.y, transform.position.z);
             currentPosition = -1;
         }
         catch (Exception e)
         {
             print(e.Message);
         }
-	}
+    }
 
-	// Update is called once per frame
-	void Update ()
-	{
+    // Update is called once per frame
+    void Update()
+    {
         try
         {
             if (currentGameState == GAME_STATE.PLAYING)
             {
                 // Getting Touch Inputs(Phone Only)
-                foreach (Touch touch in Input.touches) 
+                foreach (Touch touch in Input.touches)
                 {
                     if (touch.phase == TouchPhase.Began)
                     {
@@ -101,22 +100,22 @@ public partial class playerJumpLevel1 : MonoBehaviour
                 if (Input.GetKey(KeyCode.UpArrow) &&        //  Up Arrow is Pressed
                     currentStatus == STATE_OF_PLAYER.AT_START)  //  At Start
                 {
-                    transform.Translate(Math.Abs(MoveAlongZLevel1.speed[0]) + 0.02f, 0, 0); 
+                    transform.Translate(Math.Abs(MoveAlongZLevel1.speed[0]) + 0.02f, 0, 0);
                 }
 
                 else if (Input.GetKey(KeyCode.DownArrow) && //  Down Arrow is Pressed
                     currentStatus == STATE_OF_PLAYER.AT_START)  //  At Start
                 {
-                    transform.Translate(-Math.Abs(MoveAlongZLevel1.speed[0]) - 0.02f, 0, 0); 
+                    transform.Translate(-Math.Abs(MoveAlongZLevel1.speed[0]) - 0.02f, 0, 0);
                 }
 
-                if (currentStatus==STATE_OF_PLAYER.PLAYING)
+                if (currentStatus == STATE_OF_PLAYER.PLAYING)
                 {
                     transform.Translate(-MoveAlongZLevel1.speed[currentPosition], 0, 0);
                 }
 
                 // Move Camera when player starts and stops when camera and player lie on same line
-                if (currentStatus != STATE_OF_PLAYER.AT_START && 
+                if (currentStatus != STATE_OF_PLAYER.AT_START &&
                     transform.position.x > mainCam.position.x)
                 {
                     mainCam.Translate((transform.position.x - mainCam.position.x) * 0.0075f, 0, 0);
@@ -130,11 +129,11 @@ public partial class playerJumpLevel1 : MonoBehaviour
             }
 
         }   //  try
-        catch(Exception e)
+        catch (Exception e)
         {
-            print(e.Message + currentPosition.ToString()); 
+            print(e.Message + currentPosition.ToString());
         }
-	}
+    }
 
     // Method  called if Collision Occurs b/w player and any Obj
     void OnTriggerEnter(Collider other)
@@ -146,7 +145,7 @@ public partial class playerJumpLevel1 : MonoBehaviour
                 currentGameState = GAME_STATE.GAME_OVER;
             }
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             print(e.Message);
         }
@@ -157,19 +156,16 @@ public partial class playerJumpLevel1 : MonoBehaviour
         try
         {
             transform.position = new Vector3(transform.position.x + distance,
-                                               transform.position.y ,
+                                               transform.position.y,
                                                transform.position.z);
 
             if (currentStatus == STATE_OF_PLAYER.AT_START)
                 currentStatus = STATE_OF_PLAYER.PLAYING;
 
-            else
-                currentStatus = STATE_OF_PLAYER.PLAYING;
-
             currentPosition++;
 
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             print(e.Message);
         }

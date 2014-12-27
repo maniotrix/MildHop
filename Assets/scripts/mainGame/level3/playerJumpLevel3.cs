@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 using System;
 
 public partial class playerJumpLevel3 : MonoBehaviour
@@ -7,8 +6,7 @@ public partial class playerJumpLevel3 : MonoBehaviour
     public enum STATE_OF_PLAYER
     {
         AT_START,
-        PLAYING_OBJ0,
-        PLAYING_OBJ1
+        PLAYING
     };
     
     public Transform object0;                           // Used to get distance
@@ -108,17 +106,12 @@ public partial class playerJumpLevel3 : MonoBehaviour
                 else if (Input.GetKey(KeyCode.DownArrow) && //  Down Arrow is Pressed
                     currentStatus == STATE_OF_PLAYER.AT_START)  //  At Start
                 {
-                    transform.Translate(-Math.Abs(MoveAlongZ2Level3.speed[0]) - 0.02f, 0, 0); 
+                    transform.Translate(-Math.Abs(MoveAlongZLevel3.speed[0]) - 0.02f, 0, 0); 
                 }
 
-                if (currentStatus==STATE_OF_PLAYER.PLAYING_OBJ0)
+                if (currentStatus==STATE_OF_PLAYER.PLAYING)
                 {
-                    transform.Translate(-MoveAlongZLevel3.speed[currentPosition / 2], 0, 0);
-                }
-
-                else if (currentStatus == STATE_OF_PLAYER.PLAYING_OBJ1)
-                {
-                    transform.Translate(-MoveAlongZ2Level3.speed[currentPosition / 2], 0, 0);
+                    transform.Translate(-MoveAlongZLevel3.speed[currentPosition], 0, 0);
                 }
 
                 // Move Camera when player starts and stops when camera and player lie on same line
@@ -167,12 +160,7 @@ public partial class playerJumpLevel3 : MonoBehaviour
                                                transform.position.z);
 
             if (currentStatus == STATE_OF_PLAYER.AT_START)
-                currentStatus = STATE_OF_PLAYER.PLAYING_OBJ0;
-
-            else if (currentStatus == STATE_OF_PLAYER.PLAYING_OBJ0)
-                currentStatus = STATE_OF_PLAYER.PLAYING_OBJ1;
-            else
-                currentStatus = STATE_OF_PLAYER.PLAYING_OBJ0;
+                currentStatus = STATE_OF_PLAYER.PLAYING;
 
             currentPosition++;
 

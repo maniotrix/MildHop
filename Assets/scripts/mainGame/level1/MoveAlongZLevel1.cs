@@ -1,14 +1,13 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System;
 
-public class MoveAlongZLevel1 : MonoBehaviour 
+public class MoveAlongZLevel1 : MonoBehaviour
 {
     public Transform refPointGrid;
     public static float[] speed;
 
-	// Use this for initialization
-	void Start () 
+    // Use this for initialization
+    void Start()
     {
         speed = new float[21]{
             0.02f,-0.02f,0.02f,-0.02f,
@@ -18,10 +17,10 @@ public class MoveAlongZLevel1 : MonoBehaviour
             0.02f,-0.02f,0.02f,-0.02f,
             0.02f
         };
-	}
-	
-	// Update is called once per frame
-	void Update () 
+    }
+
+    // Update is called once per frame
+    void Update()
     {
         try
         {
@@ -36,18 +35,18 @@ public class MoveAlongZLevel1 : MonoBehaviour
                     if (Time.timeScale == 1)
                     {
                         for (int i = 0; i < speed.Length; ++i)
-                            transform.GetChild(i).Translate(speed[i], 0, 0); 
+                            transform.GetChild(i).Translate(speed[i], 0, 0);
                     }
                     break;
 
                 default:
                     break;
             }
-            
+
         }
         catch (Exception e)
         {
             print(e.Message);
         }
-	}
+    }
 }

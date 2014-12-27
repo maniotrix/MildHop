@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System;
 
 public class MoveAlongZLevel3 : MonoBehaviour 
@@ -10,13 +9,15 @@ public class MoveAlongZLevel3 : MonoBehaviour
 	// Use this for initialization
 	void Start () 
     {
-        speed = new float[11]{
-            0.025f,0.02f,0.027f,
-            0.021f,0.019f,0.022f,
-            0.03f,0.024f,0.028f,
-            0.021f,0.031f
+        speed = new float[21]{
+            0.025f,-0.025f,0.02f,-0.02f,
+            0.027f,-0.02f,0.021f,-0.02f,
+            0.019f,-0.00f,0.022f,-0.02f,
+            0.03f,-0.02f,0.024f,-0.00f,
+            0.028f,-0.02f,0.021f,-0.02f,
+            0.031f
         };
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () 

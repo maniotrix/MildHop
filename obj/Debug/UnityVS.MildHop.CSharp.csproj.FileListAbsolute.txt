@@ -9,3 +9,5 @@ C:\Users\Govind Sahai\SkyDrive\GitHub\MildHop\obj\Debug\Assembly-CSharp.dll
 C:\Users\Govind Sahai\SkyDrive\GitHub\MildHop\obj\Debug\Assembly-CSharp.pdb
 C:\Users\Govind Sahai\SkyDrive\GitHub\MildHop\Temp\UnityVS_bin\Debug\Assembly-UnityScript-firstpass.dll
 C:\Users\Govind Sahai\SkyDrive\GitHub\MildHop\Temp\UnityVS_bin\Debug\Assembly-CSharp-firstpass.pdb
+C:\Users\Govind Sahai\SkyDrive\GitHub\MildHop\Temp\UnityVS_bin\Debug\UnityEngine.UI.dll
+C:\Users\Govind Sahai\SkyDrive\GitHub\MildHop\Temp\UnityVS_bin\Debug\UnityEngine.UI.xml
