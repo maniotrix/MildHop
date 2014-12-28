@@ -74,7 +74,7 @@ public partial class playerJumpLevel3 : MonoBehaviour
             case GAME_STATE.GAME_OVER:
                 try
                 {
-                    Application.LoadLevel("gameOver");
+                    Application.LoadLevel("2levelSelector");//Application.LoadLevel("gameOver");
                 }
                 catch (Exception e)
                 {

@@ -5,17 +5,18 @@ public class MoveAlongZLevel3 : MonoBehaviour
 {
     public Transform refPointGrid;
     public static float[] speed;
+    private const float xx = 0.04f;
 
-	// Use this for initialization
-	void Start () 
+    // Use this for initialization
+    void Start () 
     {
         speed = new float[21]{
-            0.025f,-0.025f,0.02f,-0.02f,
-            0.027f,-0.02f,0.021f,-0.02f,
-            0.019f,-0.00f,0.022f,-0.02f,
-            0.03f,-0.02f,0.024f,-0.00f,
-            0.028f,-0.02f,0.021f,-0.02f,
-            0.031f
+            xx+0.005f,-xx-0.005f,xx,-xx,
+            xx+0.007f,-xx,xx+0.001f,-xx,
+            xx-0.001f,-0.00f,xx+0.002f,-xx,
+            xx+0.01f,-xx,xx+0.004f,-0.00f,
+            xx+0.008f,-xx,xx+0.001f,-xx,
+            xx+0.011f
         };
     }
 	
