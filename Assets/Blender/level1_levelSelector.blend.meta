@@ -1,0 +1,138 @@
+fileFormatVersion: 2
+guid: aa08900fbae2cfd468fd4647ca9b8792
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Text
+    100004: Text_001
+    100006: Text_002
+    100008: Text_003
+    100010: Text_004
+    100012: Text_005
+    100014: Text_006
+    100016: Text_MeshPart0
+    100018: Text_MeshPart1
+    100020: Text_MeshPart2
+    100022: Text_MeshPart3
+    100024: Text_MeshPart4
+    100026: Text_MeshPart5
+    100028: Text_MeshPart6
+    100030: Text_MeshPart7
+    400000: //RootNode
+    400002: Text
+    400004: Text_001
+    400006: Text_002
+    400008: Text_003
+    400010: Text_004
+    400012: Text_005
+    400014: Text_006
+    400016: Text_MeshPart0
+    400018: Text_MeshPart1
+    400020: Text_MeshPart2
+    400022: Text_MeshPart3
+    400024: Text_MeshPart4
+    400026: Text_MeshPart5
+    400028: Text_MeshPart6
+    400030: Text_MeshPart7
+    2300000: Text
+    2300002: Text_001
+    2300004: Text_002
+    2300006: Text_003
+    2300008: Text_004
+    2300010: Text_005
+    2300012: Text_006
+    2300014: Text_MeshPart0
+    2300016: Text_MeshPart1
+    2300018: Text_MeshPart2
+    2300020: Text_MeshPart3
+    2300022: Text_MeshPart4
+    2300024: Text_MeshPart5
+    2300026: Text_MeshPart6
+    2300028: Text_MeshPart7
+    3300000: Text
+    3300002: Text_001
+    3300004: Text_002
+    3300006: Text_003
+    3300008: Text_004
+    3300010: Text_005
+    3300012: Text_006
+    3300014: Text_MeshPart0
+    3300016: Text_MeshPart1
+    3300018: Text_MeshPart2
+    3300020: Text_MeshPart3
+    3300022: Text_MeshPart4
+    3300024: Text_MeshPart5
+    3300026: Text_MeshPart6
+    3300028: Text_MeshPart7
+    4300000: Text_006
+    4300002: Text_005
+    4300004: Text_004
+    4300006: Text_003
+    4300008: Text_002
+    4300010: Text_001
+    4300012: Text
+    4300014: Text_MeshPart0
+    4300016: Text_MeshPart1
+    4300018: Text_MeshPart2
+    4300020: Text_MeshPart3
+    4300022: Text_MeshPart4
+    4300024: Text_MeshPart5
+    4300026: Text_MeshPart6
+    4300028: Text_MeshPart7
+    7400000: Default Take
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

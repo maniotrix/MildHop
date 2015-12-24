@@ -12,7 +12,10 @@ $ git clone https://github.com/maniotrix/MildHop.git
 
 * Then open MildHop using "Unity3D"
 
-![Screenshot](demo.png)
+## Screenshots
+
+![Screenshot](past.png)
+![Screenshot](present.png)
 
 ## Usage
 

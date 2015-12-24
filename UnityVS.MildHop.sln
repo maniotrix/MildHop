@@ -1,7 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
+# Visual Studio 2015
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityVS.MildHop.CSharp", "UnityVS.MildHop.CSharp.csproj", "{ED7264F4-16CC-8329-9ABD-799D74ECD2CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityVS.MildHop.CSharp.Plugins", "UnityVS.MildHop.CSharp.Plugins.csproj", "{EE3BD144-7C2A-ECB1-0913-BA425CCED88B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +15,10 @@ Global
 		{ED7264F4-16CC-8329-9ABD-799D74ECD2CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED7264F4-16CC-8329-9ABD-799D74ECD2CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED7264F4-16CC-8329-9ABD-799D74ECD2CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE3BD144-7C2A-ECB1-0913-BA425CCED88B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE3BD144-7C2A-ECB1-0913-BA425CCED88B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE3BD144-7C2A-ECB1-0913-BA425CCED88B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE3BD144-7C2A-ECB1-0913-BA425CCED88B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
